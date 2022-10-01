@@ -1,3 +1,6 @@
 [submodule "kolala-server"]
 	path = kolala-server
 	url = git@github.com:joaoaoluiz/kolala-server
+[submodule "kolala-client"]
+	path = kolala-client
+	url = git@github.com:joaoaoluiz/kolala-client
