@@ -1,0 +1,21 @@
+@startuml
+hide footbox
+mainframe **sd** Listar Eventos no Mapa a Partir de Coordenadas
+
+actor Usuario
+boundary Interface
+participant MapsSDK
+participant EventoController
+
+Usuario -> Interface ++: Acessar Tela do Mapa()
+Interface -> MapsSDK ++: Buscar Coordenadas do Usuario()
+Interface <<-- MapsSDK : Retornar Coordenadas do Usuario()
+Interface <<-- MapsSDK --: Exibir Vizualizacao de Mapa()
+Interface -> EventoController ++: Informar os Parametros do Usuario()
+EventoController -> Evento ++: list()
+EventoController <<-- Evento --
+Interface <<-- EventoController -- : Exibir os Marcadores dos Eventos no Mapa()
+Usuario <<-- Interface --
+
+
+@enduml

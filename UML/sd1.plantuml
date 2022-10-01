@@ -1,0 +1,41 @@
+@startuml
+hide footbox
+
+mainframe **sd** Gerenciar Eventos
+actor Usuario
+boundary Interface
+participant EventoController
+participant Evento
+
+Usuario -> Interface ++ : 1: Acessar Gerenciar Eventos()
+Interface -> EventoController ++ : 1.2: Solicitar Eventos()
+EventoController -> Evento ++: list()
+Evento -->> EventoController --
+Interface <<-- EventoController --: Exibir Listagem de Eventos
+Interface -->> Usuario --
+
+note left Usuario: Cadastrar Evento
+Usuario -> Interface ++ : Informar Dados do Evento()
+Interface -> EventoController ++ : 1.2: Solicitar Cadastro()
+EventoController -> Evento ++ : create()
+EventoController <<-- Evento --
+Interface <<-- EventoController -- : Confirmar Cadastro do Evento()
+Usuario <<-- Interface --
+
+note left Usuario: Atualizar Evento
+Usuario -> Interface ++ : Informar Dados do Evento()
+Interface -> EventoController ++ : Solicitar Alteracao()
+EventoController -> Evento ++ : update()
+EventoController <<-- Evento --
+Interface <<-- EventoController -- : Confirmar Alteracao do Evento()
+Usuario <<-- Interface --
+
+note left Usuario: Excluir Evento
+Usuario -> Interface ++ : Selecionar Evento()
+Interface -> EventoController ++ : Solicitar Remocao()
+EventoController -> Evento ++ : delete()
+EventoController <<-- Evento --
+Interface <<-- EventoController -- : Confirmar Remocao do Evento()
+Usuario <<-- Interface --
+
+@enduml

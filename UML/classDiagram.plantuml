@@ -1,0 +1,110 @@
+@startuml
+
+skinparam classAttributeIconSize 0
+hide circle
+
+class Usuario {
+  -_id: String
+  -auth_key: String
+  -auth_method: String
+  -email: String
+  -status: String
+  +list(): Usuario[]
+  +show(id: String): Perfil
+  +login(): void
+  +logout(): void
+}
+
+class Administrador {
+  +deliberarDenuncia(status: String): void
+  +promoverUsuario(usuario_id: String): void
+  +suspenderUsuario(usuario_id: String): void
+  +excluirEvento(evento_id: String): void
+}
+
+Usuario "1" <|-- "0..1" Administrador
+
+class Perfil {
+  -usuario_id: String
+  -nome: String
+  -foto: String
+  -twitter_usuario: String
+  -facebook_usuario: String
+  -instagram_usuario: String
+  +show(id: String): Perfil
+  +update(usuario_id: String, payload: Perfil): void
+}
+
+Usuario "1" *-- "1" Perfil
+
+class Denuncia {
+  -_id: String
+  -categoria: Integer
+  -data: Datetime
+  -status: String
+  -autor_id: String
+  -denunciado_id: String
+  +list(): Denuncia[]
+  +show(id: String): Denuncia
+  +create(payload: Denuncia): void
+}
+
+Usuario "1" -- "0..*" Denuncia
+Usuario "1" -- "0..*" Denuncia
+
+class Evento {
+  -_id: String
+  -titulo: String
+  -data: Datetime
+  -categoria: Integer
+  -status: String
+  -data_de_criacao: Datetime
+  -autor_id: String
+  -imagens: Imagem[]
+  +list(): Evento[]
+  +show(id: String): Evento
+  +create(payload: Evento): void
+  +update(_id: String, payload: Evento): void
+  +delete(_id: String): void
+}
+
+Evento "1" -- "0..*" Imagem
+Evento "0..*" -- "1" Usuario
+
+class Participacao {
+  -evento_id: String
+  -usuario_id: String
+  -data_de_criacao: Datetime
+  +getData_de_criacao(): void
+  +create(evento_id: String, usuario_id: String): void
+  +delete(evento_id: String, usuario_id: String): void
+}
+
+Participacao "0..*" -- "1" Usuario
+Evento "1" -- "0..*" Participacao
+
+class Imagem {
+  -_id: String
+  -url: String
+  -Evento_id: String
+  +getUrl(): void
+  +create(payload: Imagem): void
+  +delete(_id: String)
+  +list(evento_id: String): Imagem[]
+}
+
+class Mensagem {
+  -_id: String
+  -conteudo: String
+  -autorId: String
+  -eventoId: String
+  -referenciaId: String
+  +list(evento_id: String): void
+  +create(payload: Evento): void
+}
+
+Mensagem "0..*" -- "1" Evento
+Mensagem "0..*" -- "1" Usuario
+Mensagem "0..1" o-- "0..1" Mensagem
+
+@enduml

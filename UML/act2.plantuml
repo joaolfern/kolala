@@ -1,0 +1,7 @@
+@startuml
+mainframe **act** Listar Eventos No Mapa a Partir de Coordenadas
+(*) --> "Acessar Mapa"
+--> "Buscar Eventos"
+--> "Exibir Marcadores No Mapa"
+--> (*)
+@enduml

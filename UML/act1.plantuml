@@ -1,0 +1,45 @@
+@startuml
+mainframe **act** Gerenciar Eventos
+(*) --> "Acessar Gerenciar Eventos"
+--> "Listar Eventos"
+if "" then
+  -->[Cadastrar Evento] "Selecionar Cadastrar Evento"
+  -->"Informar Dados do Evento"
+  -->"Informar Localidade do Evento"
+  -->"Buscar Coordenadas"
+  -->if "Verificar se os Dados Sao Validos" then
+    -->[sim]"Criar Evento"
+    -->(*)
+  else
+    -->[nao]"Informar Dados do Evento"
+  endif
+else
+  -->[Alterar Evento] "Selecionar Alterar Evento"
+  --> "Informar Dados Necessários do Evento"
+  --> if "Informou Localidade" then
+    -->[sim] "Buscar Coordenadads "
+    -->"Enviar Formulario"
+  else
+    --> [nao] "Enviar Formulario"
+    -->if "Verificar se os Dados Sao Validos " then
+    -->[sim] "Atualizar Evento"
+    --> (*)
+    else
+    -->[nao] "Informar Dados Necessários do Evento"
+  endif
+endif
+else
+  -->[Remover Evento] "Selecionar Evento a Ser Removido"
+  -->[Confirmar Remocao] if "" then
+    -->[sim] "Remover Evento"
+    --> (*)
+  else
+    -->[nao]"Selecionar Evento a Ser Removido"
+  endif
+else
+  -->[Detalhes do Evento] "Ir Para Detalhes do Evento"
+  -->(*)
+endif
+@enduml
+
+
