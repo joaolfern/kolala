@@ -1,0 +1,3 @@
+[submodule "kolala-server"]
+	path = kolala-server
+	url = git@github.com:joaoaoluiz/kolala-server
