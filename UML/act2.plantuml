@@ -3,5 +3,9 @@ mainframe **act** Listar Eventos No Mapa a Partir de Coordenadas
 (*) --> "Acessar Mapa"
 --> "Buscar Eventos"
 --> "Exibir Marcadores No Mapa"
---> (*)
+--> if "Selecionou novos filtros?" then
+  -->[sim]"Buscar Eventos"
+  else
+  -->[nao](*)
+  endif
 @enduml
