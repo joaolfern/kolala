@@ -4,89 +4,91 @@ skinparam classAttributeIconSize 0
 hide circle
 
 class Usuario {
-  -id: String
+  -id: Integer
   -auth_key: String
   -auth_method: String
   -email: String
   -status: String
   +list(): Usuario[]
-  +show(id: String): Perfil
+  +show(id: Integer): Perfil
   +login(): void
   +logout(): void
 }
 
 class Administrador {
   +deliberarDenuncia(status: String): void
-  +promoverUsuario(usuario_id: String): void
-  +suspenderUsuario(usuario_id: String): void
-  +excluirEvento(evento_id: String): void
+  +promoverUsuario(usuario_id: Integer): void
+  +suspenderUsuario(usuario_id: Integer): void
+  +excluirEvento(evento_id: Integer): void
 }
 
 class Perfil {
-  -usuario_id: String
+  -usuario_id: Integer
   -nome: String
   -foto: String
   -twitter_usuario: String
   -facebook_usuario: String
   -instagram_usuario: String
-  +show(id: String): Perfil
-  +update(usuario_id: String, payload: Perfil): void
+  +show(id: Integer): Perfil
+  +update(usuario_id: Integer, payload: Perfil): void
 }
 
 class Denuncia {
-  -id: String
+  -id: Integer
   -categoria: Integer
   -data: Datetime
   -status: String
-  -autor_id: String
-  -denunciado_id: String
+  -autor_id: Integer
+  -denunciado_id: Integer
   +list(): Denuncia[]
-  +show(id: String): Denuncia
+  +show(id: Integer): Denuncia
   +create(payload: Denuncia): void
 }
 
 class Evento {
-  -id: String
+  -id: Integer
   -titulo: String
-  -data: Datetime
+  -data_hora: Datetime
   -categoria: Integer
   -status: String
-  -data_de_criacao: Datetime
-  -autor_id: String
+  -data_criacao: Datetime
+  -autor_id: Integer
   -imagens: Imagem[]
+  -lat: Float
+  -lng: Float
   +list(): Evento[]
-  +show(id: String): Evento
+  +show(id: Integer): Evento
   +create(payload: Evento): void
-  +update(_id: String, payload: Evento): void
-  +delete(_id: String): void
+  +update(_id: Integer, payload: Evento): void
+  +delete(_id: Integer): void
 }
 
 class Participacao {
-  -evento_id: String
-  -usuario_id: String
-  -data_de_criacao: Datetime
-  +getData_de_criacao(): void
-  +create(evento_id: String, usuario_id: String): void
-  +delete(evento_id: String, usuario_id: String): void
+  -evento_id: Integer
+  -usuario_id: Integer
+  -data_criacao: Datetime
+  +getData_criacao(): void
+  +create(evento_id: Integer, usuario_id: Integer): void
+  +delete(evento_id: Integer, usuario_id: Integer): void
 }
 
 class Imagem {
-  -id: String
+  -id: Integer
   -url: String
-  -Evento_id: String
+  -Evento_id: Integer
   +getUrl(): void
   +create(payload: Imagem): void
-  +delete(_id: String)
-  +list(evento_id: String): Imagem[]
+  +delete(_id: Integer)
+  +list(evento_id: Integer): Imagem[]
 }
 
 class Mensagem {
-  -id: String
+  -id: Integer
   -conteudo: String
-  -autorId: String
-  -eventoId: String
-  -referenciaId: String
-  +list(evento_id: String): void
+  -autorId: Integer
+  -eventoId: Integer
+  -referenciaId: Integer
+  +list(evento_id: Integer): void
   +create(payload: Evento): void
 }
 
