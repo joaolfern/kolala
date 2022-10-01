@@ -4,7 +4,7 @@ skinparam classAttributeIconSize 0
 hide circle
 
 class Usuario {
-  -_id: String
+  -id: String
   -auth_key: String
   -auth_method: String
   -email: String
@@ -22,8 +22,6 @@ class Administrador {
   +excluirEvento(evento_id: String): void
 }
 
-Usuario "1" <|-- "0..1" Administrador
-
 class Perfil {
   -usuario_id: String
   -nome: String
@@ -35,10 +33,8 @@ class Perfil {
   +update(usuario_id: String, payload: Perfil): void
 }
 
-Usuario "1" *-- "1" Perfil
-
 class Denuncia {
-  -_id: String
+  -id: String
   -categoria: Integer
   -data: Datetime
   -status: String
@@ -49,11 +45,8 @@ class Denuncia {
   +create(payload: Denuncia): void
 }
 
-Usuario "1" -- "0..*" Denuncia
-Usuario "1" -- "0..*" Denuncia
-
 class Evento {
-  -_id: String
+  -id: String
   -titulo: String
   -data: Datetime
   -categoria: Integer
@@ -68,9 +61,6 @@ class Evento {
   +delete(_id: String): void
 }
 
-Evento "1" -- "0..*" Imagem
-Evento "0..*" -- "1" Usuario
-
 class Participacao {
   -evento_id: String
   -usuario_id: String
@@ -80,11 +70,8 @@ class Participacao {
   +delete(evento_id: String, usuario_id: String): void
 }
 
-Participacao "0..*" -- "1" Usuario
-Evento "1" -- "0..*" Participacao
-
 class Imagem {
-  -_id: String
+  -id: String
   -url: String
   -Evento_id: String
   +getUrl(): void
@@ -94,7 +81,7 @@ class Imagem {
 }
 
 class Mensagem {
-  -_id: String
+  -id: String
   -conteudo: String
   -autorId: String
   -eventoId: String
@@ -103,8 +90,20 @@ class Mensagem {
   +create(payload: Evento): void
 }
 
+Usuario "1" *-- "1" Perfil
+Usuario "1" <|-- Administrador
+
+Evento "1" -- "0..*" Imagem
+Evento "0..*" -- "1" Usuario
+
+Participacao "0..*" -- "1" Usuario
+Evento "1" -- "0..*" Participacao
+
+Usuario "1" -- "0..*" Denuncia
+Usuario "1" -- "0..*" Denuncia
+
 Mensagem "0..*" -- "1" Evento
 Mensagem "0..*" -- "1" Usuario
-Mensagem "0..1" o-- "0..1" Mensagem
+Mensagem "0..1" -- "0..1" Mensagem
 
 @enduml
