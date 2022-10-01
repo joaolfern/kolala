@@ -1,0 +1,25 @@
+{
+  "name": "kolala",
+  "version": "1.0.0",
+  "description": "![logo](https://i.imgur.com/LnGdxwB.png)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "act1": "java -jar UML/plantuml-1.2022.7.jar UML/act1.plantuml",
+    "act2": "java -jar UML/plantuml-1.2022.7.jar UML/act2.plantuml",
+    "class": "java -jar UML/plantuml-1.2022.7.jar UML/classDiagram.plantuml",
+    "sd1": "java -jar UML/plantuml-1.2022.7.jar UML/sd1.plantuml",
+    "sd2": "java -jar UML/plantuml-1.2022.7.jar UML/sd2.plantuml"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joaoaoluiz/kolala.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joaoaoluiz/kolala/issues"
+  },
+  "homepage": "https://github.com/joaoaoluiz/kolala#readme"
+}

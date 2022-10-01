@@ -14,7 +14,11 @@ Evento -->> EventoController --
 Interface <<-- EventoController --: Exibir Listagem de Eventos
 Interface -->> Usuario --
 
-note left Usuario: Cadastrar Evento
+
+Usuario -> Interface : Selecionar Opcao de Gerenciamento()
+
+alt Cadastrar Evento
+Interface -->> Usuario : Exibir Formulario()
 Usuario -> Interface ++ : Informar Dados do Evento()
 Interface -> EventoController ++ : 1.2: Solicitar Cadastro()
 EventoController -> Evento ++ : create()
@@ -22,7 +26,8 @@ EventoController <<-- Evento --
 Interface <<-- EventoController -- : Confirmar Cadastro do Evento()
 Usuario <<-- Interface --
 
-note left Usuario: Atualizar Evento
+else Atualizar Evento
+Interface -->> Usuario : Exibir Formulario()
 Usuario -> Interface ++ : Informar Dados do Evento()
 Interface -> EventoController ++ : Solicitar Alteracao()
 EventoController -> Evento ++ : update()
@@ -30,12 +35,13 @@ EventoController <<-- Evento --
 Interface <<-- EventoController -- : Confirmar Alteracao do Evento()
 Usuario <<-- Interface --
 
-note left Usuario: Excluir Evento
-Usuario -> Interface ++ : Selecionar Evento()
+else Excluir Evento
+Interface -->> Usuario : Exibir dialogo de confirmacao()
+Usuario -> Interface ++ : Confirmar delecao do evento()
 Interface -> EventoController ++ : Solicitar Remocao()
 EventoController -> Evento ++ : delete()
 EventoController <<-- Evento --
 Interface <<-- EventoController -- : Confirmar Remocao do Evento()
 Usuario <<-- Interface --
-
+end
 @enduml

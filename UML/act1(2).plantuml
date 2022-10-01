@@ -1,5 +1,26 @@
+
 @startuml
 mainframe **act** Gerenciar Eventos
+' !pragma useVerticalIf on
+start
+- Acessar Gerenciar Eventos
+- Listar Eventos
+- Escolher Opcao
+if (Cadastrar) then (sim)
+  :Text 1;
+(nao) elseif (Alterar) then (yes)
+  :Text 2;
+(nao) elseif (Remover) then (yes)
+  :Text 3;
+(nao) elseif (Ver detalhes) then (yes)
+  :Text 4;
+else (nothing)
+
+endif
+stop
+@enduml
+
+
 (*) --> "Acessar Gerenciar Eventos"
 --> "Listar Eventos"
 if "Cadastrar Evento?" then
@@ -47,4 +68,3 @@ else
     endif
   else
 endif
-@enduml
