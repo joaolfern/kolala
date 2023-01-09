@@ -14,7 +14,7 @@ EventoController <<-- Evento --
 Interface <<-- EventoController -- : Exibir os Marcadores dos Eventos no Mapa()
 Usuario <<-- Interface --
 
-==Repticao==
+==Repeticao==
 Usuario -> Interface ++: Informar parametros personalizados()
 Interface -> EventoController ++: Informar os Parametros do Usuario()
 EventoController -> Evento ++: list()
